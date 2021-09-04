@@ -1,6 +1,9 @@
 from ..app import *
 
 
-class HelloWorld(Resource):
+class HelloWorld(Resource, APIResponse):
     def get(self):
-        return {"Hello": "World"}
+        self.set_status(200)
+        self.set_content({"Hello": "World"})
+
+        return self.get_response()
