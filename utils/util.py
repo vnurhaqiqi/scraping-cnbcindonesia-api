@@ -17,7 +17,11 @@ class CNBCIndonesiaNews(Resource, APIResponse, Scraper):
         category = request.args.get('category')
         content = self.get_data_from_page(path=category)
 
-        self.set_status(200)
-        self.set_content(content)
+        if content:
+            self.set_status(200)
+            self.set_content(content)
+
+        else:
+            self.set_status(404)
 
         return self.get_response()
