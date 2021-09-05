@@ -5,7 +5,7 @@ STATUS_CODE = {
     429: "Too Many Requests", 500: "Internal Server Error", 501: "Not Implemented", 503: "Service Unavailable"
 }
 
-SOURCE_URL = "https://www.cnbcindonesia.com/{}"
+SOURCE_URL = "https://www.cnbcindonesia.com/"
 
 BASE_PATH = "/api/v1/{}"
 

@@ -25,3 +25,21 @@ class CNBCIndonesiaNews(Resource, APIResponse, Scraper):
             self.set_status(404)
 
         return self.get_response()
+
+
+class CNBCIndonesiaNewsDetail(Resource, APIResponse, Scraper):
+    def get(self):
+        url = request.args.get('url')
+        content = self.scraping_data_detail(url)
+
+        if content:
+            self.set_status(200)
+            self.set_content(content)
+
+        elif content['status'] == 400:
+            self.set_status(400)
+
+        else:
+            self.set_status(404)
+
+        return self.get_response()

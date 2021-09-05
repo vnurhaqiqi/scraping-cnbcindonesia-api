@@ -4,3 +4,4 @@ from ..app import *
 
 api.add_resource(CNBCIndonesiaCategories, BASE_PATH.format(''))
 api.add_resource(CNBCIndonesiaNews, BASE_PATH.format('cnbc-news-articles'))
+api.add_resource(CNBCIndonesiaNewsDetail, BASE_PATH.format('cnbc-news-detail'))

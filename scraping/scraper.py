@@ -12,7 +12,7 @@ class Scraper():
         if web_data.status_code == 200:
             soup = BeautifulSoup(web_data.text, 'html.parser')
             contents = soup.find_all('article')
-            news_data = {'headline': {}, 'list_of_news': []}
+            news_data = {'headline': {}, 'total_news': 0, 'news': []}
 
             # get headline news
             headline_content = soup.find('article', id='hl')
@@ -38,15 +38,17 @@ class Scraper():
                     news_url = content.find('a', href=True).get('href')
                     img_url = content.find('img').get('src')
 
-                    news_data['list_of_news'].append({
+                    news_data['news'].append({
                         'title': title,
                         'label': news_label,
                         'release_updated': release_updated,
                         'url': news_url,
                         'img_url': img_url
                     })
-                except:
+                except Exception as e:
                     continue
+
+            news_data['total_news'] = len(news_data['news'])
 
             return news_data
 
@@ -54,7 +56,41 @@ class Scraper():
             return False
 
     def get_data_from_page(self, path=None):
-        url_path = SOURCE_URL.format(path) if path else SOURCE_URL
+        url_path = SOURCE_URL + path if path else SOURCE_URL
         res = self.scraping_data(url_path)
 
         return res
+
+    def scraping_data_detail(self, url):
+        web_data = get(url)
+
+        if web_data.status_code == 200:
+            soup = BeautifulSoup(web_data.text, 'html.parser')
+
+            try:
+                header = soup.find('div', class_='jdl')
+                title = header.find('h1').text
+                author_class = header.find('div', class_='author').text.split(' ')
+                label = author_class[0]
+                author = ' '.join(author_class[2:])
+                release_date = header.find('div', class_='date').text
+
+                detail_text_class = soup.find('div', class_='detail_text')
+                texts = detail_text_class.find_all('p')
+                news_content = ' '.join([text.text for text in texts])
+
+                news_content_data = {
+                    'title': title,
+                    'label': label,
+                    'author': author,
+                    'release_date': release_date,
+                    'content': news_content
+                }
+
+                return news_content_data
+
+            except Exception as e:
+                return {'status': 400}
+
+        elif web_data.status_code == 404:
+            return False
