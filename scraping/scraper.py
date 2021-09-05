@@ -61,6 +61,12 @@ class Scraper():
 
         return res
 
+    def get_data_by_query(self, query=None):
+        url_path = SOURCE_URL + 'search?query={}'.format(query) if query else SOURCE_URL
+        res = self.scraping_data(url_path)
+
+        return res
+
     def scraping_data_detail(self, url):
         web_data = get(url)
 
