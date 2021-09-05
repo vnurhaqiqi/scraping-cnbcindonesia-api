@@ -2,7 +2,7 @@ from builtins import Exception
 
 from bs4 import BeautifulSoup
 from requests import get
-from ..helpers.helpers import *
+from helpers.helpers import *
 
 
 class Scraper():

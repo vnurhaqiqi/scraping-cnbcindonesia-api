@@ -1,7 +1,7 @@
 from flask import request
-from ..app import *
-from ..scraping.scraper import Scraper
-from ..helpers.helpers import *
+from app import *
+from scraping.scraper import Scraper
+from helpers.helpers import *
 
 
 class CNBCIndonesiaCategories(Resource, APIResponse):
