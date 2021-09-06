@@ -86,6 +86,50 @@ gunicorn app:app
 </tbody>
 </table>
 
+#### List of Category
+<table>
+<thead>
+<tr>
+  <th>No.</th>
+  <th>Category</th>
+</tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td>market</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>investment</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>news</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>entrepreneur</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>syariah</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>tech</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>lifestyle</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>profil</td>
+  </tr>
+</tbody>
+</table>
+
 #### Example
 - [x] **Example: [/api/v1/cnbc-news-articles](https://flask-scraping-cncbind.herokuapp.com/api/v1/cnbc-news-articles)**
 - [x] **Example: [/api/v1/cnbc-news-articles?category={category}](https://flask-scraping-cncbind.herokuapp.com/api/v1/cnbc-news-articles?category=market)**
